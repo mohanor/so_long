@@ -13,7 +13,8 @@ typedef struct s_vars{
     void    *ground;
     void    *wall;
     void    *plyer;
-    void    *cl;
+    void    *collectible;
+    void    *exit;
     int     plyer_pos_1;
     int     plyer_pos_2;
     int     map_width;

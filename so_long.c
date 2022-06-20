@@ -86,7 +86,8 @@ void    open_win(t_vars *vars)
     vars->ground = mlx_xpm_file_to_image(vars->mlx, "./img/ground.xpm", &vars->i, &vars->j);
     vars->wall = mlx_xpm_file_to_image(vars->mlx, "./img/wall.xpm", &vars->i, &vars->j);
     vars->plyer = mlx_xpm_file_to_image(vars->mlx, "./img/plyer.xpm", &vars->i, &vars->j);
-    vars->cl = mlx_xpm_file_to_image(vars->mlx, "./img/coin.xpm", &vars->i, &vars->j);
+    vars->collectible = mlx_xpm_file_to_image(vars->mlx, "./img/coin.xpm", &vars->i, &vars->j);
+    vars->exit = mlx_xpm_file_to_image(vars->mlx, "./img/exit.xpm", &vars->i, &vars->j);
 
     i = 0;
     while (i < vars->map_height)
@@ -101,9 +102,11 @@ void    open_win(t_vars *vars)
             if (vars->map[i][j] == '1')
                 mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, j * 50, i * 50);
             if (vars->map[i][j] == 'C')
-                mlx_put_image_to_window(vars->mlx, vars->win, vars->cl, j * 50, i * 50);
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->collectible, j * 50, i * 50);
             if (vars->map[i][j] == 'P')
                 mlx_put_image_to_window(vars->mlx, vars->win, vars->plyer, j * 50, i * 50);
+            if (vars->map[i][j] == 'E')
+                mlx_put_image_to_window(vars->mlx, vars->win, vars->exit, j * 50, i * 50);
             j++;
         }
         i++;
