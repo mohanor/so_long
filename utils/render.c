@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:40:59 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 21:08:08 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:20:47 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	test_map(t_vars *vars)
 		i++;
 	}
 	if (vars->e == 0 || vars->coin == 0 || vars->p != 1)
-		own_exit("map error123\n");
+		own_exit("map error\n");
 }
 
 int	if_possible_to_move(t_vars *vars, int i, int j)

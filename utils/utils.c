@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:30 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 18:48:42 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:22:49 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == 0 && if_possible_to_move(vars,
 			vars->plyer_pos_1, vars->plyer_pos_2 - 1))
 		put_new_position(vars, --p2, p1, keycode);
-	printf("coin : %d\n", vars->coin);
 	return (0);
 }

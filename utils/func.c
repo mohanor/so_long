@@ -6,17 +6,12 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 17:02:11 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 19:30:04 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:20:01 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-/*
-int	has_empty_line(t_vars *vars)
-{
-	return (1);
-}
-*/
+
 void	map_dimantion(t_vars *vars)
 {
 	int	i;
@@ -60,5 +55,22 @@ void	empty_line(char *tr)
 				|| (tr[k] == '\n' && tr[k + 1] == '\0'))
 			own_exit("map has empty line\n");
 		k++;
+	}
+}
+
+void	check_file_type(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len > 4)
+	{
+		if (str[len - 1] != 'r' || str[len - 2] != 'e' \
+			|| str[len - 3] != 'b' || str[len - 4] != '.')
+			own_exit("file type error\n");
+	}
+	else
+	{
+		own_exit("file type error\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:37 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 20:39:15 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:20:23 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void	map_dimantion(t_vars *vars);
 void	put_new_position(t_vars *vars, int p2, int p1, int keycode);
 int		exit_2(t_vars *vars);
 void	empty_line(char *tr);
+void	check_file_type(char *str);
 
 #endif

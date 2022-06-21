@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:39:36 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 20:40:09 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 22:18:51 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,16 @@ void	move_to(int keycode)
 		ft_putstr("move to rgiht\n");
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	int		fd;
 	char	tr[9999];
 	t_vars	vars;
 
-	fd = open("./maps/map.ber", O_RDONLY);
+	if (ac != 2)
+		return (0);
+	check_file_type(av[1]);
+	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putstr("errror fd\n");
