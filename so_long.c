@@ -82,13 +82,13 @@ void    open_win(t_vars *vars)
 {
     int i;
     int j;
+
     vars->win = mlx_new_window(vars->mlx, vars->map_width * 50, vars->map_height * 50, "so long");
     vars->ground = mlx_xpm_file_to_image(vars->mlx, "./img/ground.xpm", &vars->i, &vars->j);
     vars->wall = mlx_xpm_file_to_image(vars->mlx, "./img/wall.xpm", &vars->i, &vars->j);
     vars->plyer = mlx_xpm_file_to_image(vars->mlx, "./img/plyer.xpm", &vars->i, &vars->j);
     vars->collectible = mlx_xpm_file_to_image(vars->mlx, "./img/coin.xpm", &vars->i, &vars->j);
     vars->exit = mlx_xpm_file_to_image(vars->mlx, "./img/exit.xpm", &vars->i, &vars->j);
-
     i = 0;
     while (i < vars->map_height)
     {
@@ -113,6 +113,65 @@ void    open_win(t_vars *vars)
     }
 }
 
+int     if_possible_to_move(t_vars *vars, int i, int j)
+{
+    if (vars->map[i][j] == 'E' && vars->coin == 0){
+        own_exit("success");
+    }
+    if (vars->map[i][j] == 'E')
+        return 0;
+    if (vars->map[i][j] != '1' || vars->map[i][j] == 'P')
+        return (1);
+    return (0);
+}
+
+void    if_coin(t_vars *vars)
+{
+    if (vars->map[vars->plyer_pos_1][vars->plyer_pos_2] == 'C')
+    {
+        vars->map[vars->plyer_pos_1][vars->plyer_pos_2] = '0';
+        vars->coin--;
+    }
+}
+
+void    move_to(int keycode)
+{
+    if (keycode == 13)
+        ft_putstr("move to top\n");
+    if (keycode == 0)
+        ft_putstr("move to left\n");
+    if (keycode == 1)
+        ft_putstr("move to bottom\n");
+    if (keycode == 2)
+        ft_putstr("move to rgiht\n");
+}
+
+int	key_hook(int keycode, t_vars *vars)
+{
+    if (keycode == 2 && if_possible_to_move(vars, vars->plyer_pos_1, vars->plyer_pos_2 + 1)){
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->ground, vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->plyer, ++vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        if_coin(vars);
+    }
+    if (keycode == 1 && if_possible_to_move(vars, vars->plyer_pos_1 + 1, vars->plyer_pos_2)){
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->ground, vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->plyer, vars->plyer_pos_2 * 50, ++vars->plyer_pos_1 * 50);
+        if_coin(vars);
+    }
+    if (keycode == 13 && if_possible_to_move(vars, vars->plyer_pos_1 - 1, vars->plyer_pos_2)){
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->ground, vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->plyer, vars->plyer_pos_2 * 50, --vars->plyer_pos_1 * 50);
+        if_coin(vars);
+    }
+    if (keycode == 0 && if_possible_to_move(vars, vars->plyer_pos_1, vars->plyer_pos_2 - 1)){
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->ground, vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        mlx_put_image_to_window(vars->mlx, vars->win, vars->plyer, --vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
+        if_coin(vars);
+    }
+    move_to(keycode);
+    return 0;
+}
+
 int main()
 {
     int		fd;
@@ -130,10 +189,7 @@ int main()
     test_map(&vars);
     open_win(&vars);
 
-    printf("width %d\n", vars.map_width);
-    printf("height %d\n", vars.map_height);
-    printf("coin %d\n", vars.coin);
-    printf("player i %d : j %d\n", vars.plyer_pos_1, vars.plyer_pos_2);
+    mlx_hook(vars.win, 2, 0, key_hook, &vars);
     mlx_loop(vars.mlx);
     return (0);
 }
