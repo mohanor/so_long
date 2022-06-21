@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:37 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 19:29:31 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 20:39:15 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_vars{
 	int		coin;
 	int		i;
 	int		j;
+	int		p;
+	int		e;
 }	t_vars;
 
 int		ft_strlen(char *p);

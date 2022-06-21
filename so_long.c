@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:39:36 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 19:29:44 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 20:40:09 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_var(t_vars *vars, int fd, char *tr)
 			"./img/coin.xpm", &vars->i, &vars->j);
 	vars->exit = mlx_xpm_file_to_image(vars->mlx,
 			"./img/exit.xpm", &vars->i, &vars->j);
+	vars->e = 0;
+	vars->p = 0;
 }
 
 void	if_coin(t_vars *vars)
