@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:39:36 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 16:40:45 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 19:29:44 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_var(t_vars *vars, int fd, char *tr)
 {
 	vars->mlx = mlx_init();
 	vars->map = ft_split(read_map(fd, tr), '\n');
+	empty_line(tr);
 	vars->i = 0;
 	vars->j = 0;
 	vars->ground = mlx_xpm_file_to_image(vars->mlx,
@@ -90,6 +91,7 @@ int	main(void)
 	test_map(&vars);
 	open_win(&vars);
 	mlx_hook(vars.win, 2, 0, key_hook, &vars);
+	mlx_hook(vars.win, 17, 0, exit_2, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

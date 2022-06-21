@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:40:59 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 17:01:42 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 18:01:52 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	test_map(t_vars *vars)
 	map = vars->map;
 	vars->coin = 0;
 	map_dimantion(vars);
-	while (map[i++])
+	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])

@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:48:30 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 17:46:57 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/21 18:48:42 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	put_new_position(t_vars *vars, int p2, int p1, int keycode)
 		vars->ground, vars->plyer_pos_2 * 50, vars->plyer_pos_1 * 50);
 	mlx_put_image_to_window(vars->mlx, vars->win,
 		vars->plyer, p2 * 50, p1 * 50);
-	if_coin(vars);
 	move_to(keycode);
 	vars->plyer_pos_2 = p2;
 	vars->plyer_pos_1 = p1;
+	if_coin(vars);
 }
 
 int	key_hook(int keycode, t_vars *vars)
@@ -69,5 +69,6 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == 0 && if_possible_to_move(vars,
 			vars->plyer_pos_1, vars->plyer_pos_2 - 1))
 		put_new_position(vars, --p2, p1, keycode);
+	printf("coin : %d\n", vars->coin);
 	return (0);
 }
