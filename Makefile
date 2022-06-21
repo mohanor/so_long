@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC =	so_long.c utils/split.c utils/utils.c utils/render.c
+SRC =	so_long.c utils/split.c utils/utils.c utils/render.c utils/func.c
 
 OBJ = $(SRC:.c=.o)
 

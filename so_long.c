@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/21 16:39:36 by matef             #+#    #+#             */
+/*   Updated: 2022/06/21 16:40:45 by matef            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*read_map(int fd, char *tr)
@@ -29,9 +41,19 @@ void	init_var(t_vars *vars, int fd, char *tr)
 	vars->map = ft_split(read_map(fd, tr), '\n');
 	vars->i = 0;
 	vars->j = 0;
+	vars->ground = mlx_xpm_file_to_image(vars->mlx,
+			"./img/ground.xpm", &vars->i, &vars->j);
+	vars->wall = mlx_xpm_file_to_image(vars->mlx,
+			"./img/wall.xpm", &vars->i, &vars->j);
+	vars->plyer = mlx_xpm_file_to_image(vars->mlx,
+			"./img/plyer.xpm", &vars->i, &vars->j);
+	vars->collectible = mlx_xpm_file_to_image(vars->mlx,
+			"./img/coin.xpm", &vars->i, &vars->j);
+	vars->exit = mlx_xpm_file_to_image(vars->mlx,
+			"./img/exit.xpm", &vars->i, &vars->j);
 }
 
-void    if_coin(t_vars *vars)
+void	if_coin(t_vars *vars)
 {
 	if (vars->map[vars->plyer_pos_1][vars->plyer_pos_2] == 'C')
 	{
@@ -52,24 +74,22 @@ void	move_to(int keycode)
 		ft_putstr("move to rgiht\n");
 }
 
-int main()
+int	main(void)
 {
-    int		fd;
+	int		fd;
 	char	tr[9999];
 	t_vars	vars;
 
-    fd = open("./maps/map.ber", O_RDONLY);
+	fd = open("./maps/map.ber", O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putstr("errror fd\n");
 		return (0);
 	}
-
-    init_var(&vars, fd, tr);
-    test_map(&vars);
-    open_win(&vars);
-
-    mlx_hook(vars.win, 2, 0, key_hook, &vars);
-    mlx_loop(vars.mlx);
-    return (0);
+	init_var(&vars, fd, tr);
+	test_map(&vars);
+	open_win(&vars);
+	mlx_hook(vars.win, 2, 0, key_hook, &vars);
+	mlx_loop(vars.mlx);
+	return (0);
 }
