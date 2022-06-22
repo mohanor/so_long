@@ -6,7 +6,7 @@
 /*   By: matef <matef@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:39:36 by matef             #+#    #+#             */
-/*   Updated: 2022/06/21 22:18:51 by matef            ###   ########.fr       */
+/*   Updated: 2022/06/22 09:12:32 by matef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_var(t_vars *vars, int fd, char *tr)
 	empty_line(tr);
 	vars->i = 0;
 	vars->j = 0;
+	vars->move = 0;
 	vars->ground = mlx_xpm_file_to_image(vars->mlx,
 			"./img/ground.xpm", &vars->i, &vars->j);
 	vars->wall = mlx_xpm_file_to_image(vars->mlx,
@@ -65,16 +66,11 @@ void	if_coin(t_vars *vars)
 	}
 }
 
-void	move_to(int keycode)
+void	move_to(t_vars *vars)
 {
-	if (keycode == 13)
-		ft_putstr("move to top\n");
-	if (keycode == 0)
-		ft_putstr("move to left\n");
-	if (keycode == 1)
-		ft_putstr("move to bottom\n");
-	if (keycode == 2)
-		ft_putstr("move to rgiht\n");
+	ft_putstr("moves : ");
+	ft_putnbr(++vars->move);
+	ft_putchar('\n');
 }
 
 int	main(int ac, char **av)
