@@ -58,5 +58,6 @@ int		exit_2(t_vars *vars);
 void	empty_line(char *tr);
 void	check_file_type(char *str);
 void	ft_putnbr(int n);
+char	*ft_map_size(char *str);
 
 #endif

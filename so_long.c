@@ -76,7 +76,7 @@ void	move_to(t_vars *vars)
 int	main(int ac, char **av)
 {
 	int		fd;
-	char	tr[9999];
+	char	*tr;	
 	t_vars	vars;
 
 	if (ac != 2)
@@ -88,6 +88,9 @@ int	main(int ac, char **av)
 		ft_putstr("errror fd\n");
 		return (0);
 	}
+	tr = ft_map_size(av[1]);
+	if (!tr)
+		return (0);
 	init_var(&vars, fd, tr);
 	test_map(&vars);
 	open_win(&vars);

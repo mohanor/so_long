@@ -70,7 +70,8 @@ void	map_test_func(t_vars *vars, char **map, int i, int j)
 	}
 	if (map[i][j] == 'E')
 		vars->e++;
-	if (!(map[i][j] == '0' || map[i][j] == '1' || map[i][j] == 'C' || map[i][j] == 'P' || map[i][j] == 'E'))
+	if (!(map[i][j] == '0' || map[i][j] == '1' || map[i][j] == 'C' \
+		|| map[i][j] == 'P' || map[i][j] == 'E'))
 		own_exit("map error\n");
 }
 
